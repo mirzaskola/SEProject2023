@@ -1,1 +1,1 @@
-# SEProject2023
+# The name of our project is Spoiler Alert. Spoiler Alert is a movie/series review website aimed at film enthusiasts, that will help its users find the best content for them. The website aims to create a community where users will be able to read and post reviews, search and filter content that best suits them. The website will feature a modern, friendly UI, that makes the tedious process of searching for new movies a piece of cake. The website is aimed at movie enthusiasts and people of all ages who are in search of their next Saturday night entertainment.
