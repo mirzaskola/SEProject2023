@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="description" content="Web Design">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Mirza Kurtovic">
+    <meta name="viewport" content="width=device-width, initial-scale=1,  maximum-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="content-script-type" content="text/javascript">
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link href="client/_assets/css/bootstrap.min.css" rel="stylesheet">
+    <title>Spoiler Alert</title>
+</head>
+
+<body>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Average rating</th>
+            <th scope="col">Release date</th>
+          </tr>
+        </thead>
+        <tbody id="content-rows"></tbody>
+      </table>
+</body>
+<script src="client/_assets/js/jquery-3.6.0.min.js"></script>
+<script src="client/_assets/js/bootstrap.bundle.min.js"></script>
+<script src="client/content-service.js"></script>
+
+<script>ContentService.init();</script>
+</html>
