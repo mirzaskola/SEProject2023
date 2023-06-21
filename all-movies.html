@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="description" content="SE">
+        <meta name="keywords" content="HTML, CSS, JavaScript">
+        <meta name="author" content="Mirza Kurtovic">
+        <meta name="viewport" content="width=device-width, initial-scale=1,  maximum-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="content-script-type" content="text/javascript">
+        <meta http-equiv="x-dns-prefetch-control" content="on">
+        <!-- Bootstrap css -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+        <!-- Custom css -->
+        <link rel="stylesheet" href="css/style.css">
+        <title>Spoiler ALert | The most trusted review site</title>
+
+        <style>
+            #backToTopBtn {
+                display: none; /* Hidden by default */
+                position: fixed; /* Fixed/sticky position */
+                bottom: 20px; /* Place the button at the bottom of the page */
+                right: 30px; /* Place the button 30px from the right */
+                z-index: 99; /* Make sure it does not overlap */
+                border: none; /* Remove borders */
+                outline: none; /* Remove outline */
+                background-color: #555; /* Set a background color */
+                color: #fff; /* Text color */
+                cursor: pointer; /* Add a mouse pointer on hover */
+                padding: 15px; /* Some padding */
+                border-radius: 180px; /* Rounded corners */
+                font-size: 8px; /* Increase font size */
+                text-transform: uppercase;
+                transition: all 0.2s ease-in-out;
+            }
+
+            #backToTopBtn:hover {   
+                color: #666;
+                box-shadow: 0 5px 15px #666;
+            }
+            .dropdown-toggle::after {
+            content: none;
+        }
+        </style>
+        
+    </head>
+
+    <body>
+        <div id="header"></div>
+
+        <main>
+             <!--Top rated start -->
+            <div class="most-popular" id="s2">
+                <div class="container-fluid align-items-center">
+                    <div class="common-text text-center container-sm">
+                        <h2>All Movies</h2>
+                        <form id="search-form">
+                        <div class="d-lg-inline-flex p-2 w-md-50 input-group">                        
+                            <input name="search" type="text" class="form-control text-truncate me-1" placeholder="Type name of the movie you want to look up..." aria-label="Search" aria-describedby="addon-wrapping">
+                            <button class="btn btn-outline-light w-md-50" type="submit" id="button-addon2">Search</button>
+                        </div>
+                      </form>                                                                
+                    </div>
+                    <br><br>            
+                    <div class="most-body text-center">                        
+                        <!-- row start -->
+                        <!--  justify-content-center JE BIO OVDJE DA SE CENTRIRA -->
+                        <div id="movie-list" class="row">
+                           
+                                                        
+                        </div>
+                        <!-- row end -->
+                    </div>
+                    <!-- most body end -->                    
+                </div>
+            </div>
+            <!-- Top rated end -->
+            
+            <div id="offers"></div>
+        </main>
+        <div id="about"></div>
+        
+
+        <!-- Back to top button start -->
+        <button class="btn btn-outline-light" onclick="topFunction()" id="backToTopBtn" title="Go to top">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fff" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+              </svg>
+        </button> 
+        <!-- Back to top button end -->        
+        <div id="footer"></div>
+    </body> 
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/services/content-service.js"></script>
+<script src="js/services/review-service.js"></script>
+<script src="js/services/user-service.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+
+
+    <script>
+        ContentService.getAllMovies();
+        ContentService.init();
+    </script>
+    <script>
+        mybutton = document.getElementById("backToTopBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        } 
+    </script>
+    <script> 
+        $(function(){
+          $("#header").load("pages/header.html");
+          $("#offers").load("pages/offers.html");
+          $("#about").load("pages/about-us.html");
+          $("#footer").load("pages/footer.html"); 
+        });
+    </script>    
+</html>
+<!-- ViewContentDetailsModal -->
+<div class="modal fade" id="viewContentDetailsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog  modal-lg">
+    <div class="modal-content" style="color: black;">
+
+      <form id="viewContentDetailsForm">                
+        <div class="modal-header " id="contentModalTitleHeader"></div>
+        <div class="modal-body">
+          <input type="hidden" name="id" />
+          <div class="form-group">           
+            
+            <div class="input-group mb-3 fs-6">
+              <span class="input-group-text w-25" id="description-addon">Description</span>
+              <textarea name="description" type="text" class="form-control required" maxlength="240" placeholder="Content description" aria-describedby="description-addon"></textarea>
+            </div>
+            <div id="contentGenres" class="d-flex gap-1 justify-content-start my-2"></div>
+            <div class="input-group mb-3">
+              <span class="input-group-text w-25 fs-6" id="release-date-addon">Release date</span>
+              <input name="release-date" type="text" class="form-control required" placeholder="Release date" aria-describedby="release-date-addon" readonly>
+              <span class="input-group-text w-25 fs-6" id="duration-addon">Duration(mins)</span>
+              <input name="duration" type="text" class="form-control required" placeholder="Duration" aria-describedby="duration-addon" readonly>
+            </div>
+
+            <div id="tvshow-seasons" class="input-group mb-3" hidden>
+              <span class="input-group-text w-25 fs-6" id="seasons-addon">Seasons</span>
+              <input name="seasons" type="text" class="form-control required" placeholder="Duration" aria-describedby="seasons-addon" readonly>
+            </div>
+          </div>
+          <!-- User activities start stajao je mt-5--> 
+            <div class="container-fluid" id="user-activities" style="color: black;">
+              <div class="my-3 p-3 bg-body rounded shadow-sm" id="review-list">
+                  
+                  <small>
+                  <a href="#">All updates</a>
+                  </small>
+              </div>
+            </div>
+          <!-- User activities end-->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" onclick="UserService.redirectToLogin();">Leave review</button>
+        </div>
+        
+      </form>           
+    </div>
+  </div>
+</div>
+
+<!--ModalReview start-->
+<div class="modal fade" id="ModalReview" aria-hidden="true" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content"  style="color: black;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="review-modal" style="color: black;">Leave a review</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form id="reviewContentForm">
+            <input name="contentTitle" id="contentTitle" type="hidden">
+            <input name="contentId" id="contentId" type="hidden">
+            <div class="input-group mb-3">
+                <label for="ratingRange" class="form-label">Review</label>
+                <input name="ratingRange"  type="range" class="form-range" min="0" max="5" step="0.5" id="ratingRange">
+              </div>
+              <div class="d-flex mb-3">
+                  <label for="reviewComment" class="form-label">Comments (Optional)</label>
+                  <textarea name="reviewComment"  class="form-control" aria-label="Comments (Optional)" id="reviewComment"></textarea>
+                </div>
+              <button class="btn btn-primary" data-bs-target="#ModalGameDetails" data-bs-toggle="modal" type="submit">Submit</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--ModalReview end-->
+

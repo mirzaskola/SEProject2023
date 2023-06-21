@@ -23,16 +23,18 @@ Flight::route('POST /user/login', function(){
   }
 });
 
-Flight::route('POST /user/myprofile', function(){
-  $loginData = Flight::request()->data->getData();  
+Flight::route('GET /user/myprofile', function(){
+  $user = Flight::get('user');
+  Flight::json($user);
   $userService = new UserService();
-  $response = $userService->login($loginData);
-  if(isset($response['token'])){
-      Flight::json($response['token'], 200); 
-  }
-  else{
-      Flight::json(["message" => $response['message']], $response['code']);
-  }
+    if (isset($user['id'])){
+        $data = $userService->getById($user['id']);
+        unset($data['password']);
+        Flight::json($data, 200);
+    }
+    else{
+        Flight::json("User is not logged in", 403);
+    }
 });
 
 Flight::route('PUT /user/login', function(){
@@ -40,7 +42,8 @@ Flight::route('PUT /user/login', function(){
   $userService = new UserService();
   $response = $userService->login($loginData);
   if(isset($response['token'])){
-      Flight::json($response['token'], 200); 
+    Flight::set('user', $loginData);
+    Flight::json($response['token'], 200); 
   }
   else{
       Flight::json(["message" => $response['message']], $response['code']);
