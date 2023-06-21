@@ -11,10 +11,7 @@ class Genre
     {
         return $this->id;
     }
-    public function setId($id): void
-    {
-        $this->id = $id;
-    }
+
     public function getName(): string
     {
         return $this->name;

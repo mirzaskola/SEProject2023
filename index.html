@@ -80,7 +80,7 @@
       </div>
     </div>
     <!-- Top rated end -->
-<div id="offers"></div>
+<!--<div id="offers"></div>-->
     
   </main>
   <div id="about"></div>
@@ -100,13 +100,11 @@
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery.validate.min.js"></script>
 <script src="js/services/content-service.js"></script>
-<script src="js/services/review-service.js"></script>
-<script src="js/services/security-service.js"></script>
 
 <script>
   $(function () {
     $("#header").load("pages/header.html");
-    $("#offers").load("pages/offers.html");
+    /* $("#offers").load("pages/offers.html"); */
     $("#about").load("pages/about-us.html");
     $("#footer").load("pages/footer.html");
   });
@@ -134,82 +132,6 @@
 </script>
 
 <script>
-  ContentService.getAllContent();
   ContentService.init();
 </script>
 </html>
-<!-- ViewContentDetailsModal -->
-<div class="modal fade" id="viewContentDetailsModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog  modal-lg">
-    <div class="modal-content" style="color: black;">
-
-      <form id="viewContentDetailsForm">                
-        <div class="modal-header " id="contentModalTitleHeader"></div>
-        <div class="modal-body">
-          <input type="hidden" name="id" />
-          <div class="form-group">           
-            
-            <div class="input-group mb-3 fs-6">
-              <span class="input-group-text w-25" id="description-addon">Description</span>
-              <textarea name="description" type="text" class="form-control required" maxlength="240" placeholder="Content description" aria-describedby="description-addon"></textarea>
-            </div>
-            <div id="contentGenres" class="d-flex gap-1 justify-content-start my-2"></div>
-            <div class="input-group mb-3">
-              <span class="input-group-text w-25 fs-6" id="release-date-addon">Release date</span>
-              <input name="release-date" type="text" class="form-control required" placeholder="Release date" aria-describedby="release-date-addon" readonly>
-              <span class="input-group-text w-25 fs-6" id="duration-addon">Duration(mins)</span>
-              <input name="duration" type="text" class="form-control required" placeholder="Duration" aria-describedby="duration-addon" readonly>
-            </div>
-
-            <div id="tvshow-seasons" class="input-group mb-3" hidden>
-              <span class="input-group-text w-25 fs-6" id="seasons-addon">Seasons</span>
-              <input name="seasons" type="text" class="form-control required" placeholder="Duration" aria-describedby="seasons-addon" readonly>
-            </div>
-          </div>
-          <!-- User activities start stajao je mt-5--> 
-            <div class="container-fluid" id="user-activities" style="color: black;">
-              <div class="my-3 p-3 bg-body rounded shadow-sm" id="review-list">
-                  
-                  <small>
-                  <a href="#">All updates</a>
-                  </small>
-              </div>
-            </div>
-          <!-- User activities end-->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" onclick="SecurityService.redirectToLogin();">Leave review</button>
-        </div>
-        
-      </form>           
-    </div>
-  </div>
-</div>
-
-<!--ModalReview start-->
-<div class="modal fade" id="ModalReview" aria-hidden="true" tabindex="-1">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content"  style="color: black;">
-      <div class="modal-header">
-        <h5 class="modal-title" id="review-modal" style="color: black;">Leave a review</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-          <form id="reviewContentForm">
-            <input name="contentTitle" id="contentTitle" type="hidden">
-            <input name="contentId" id="contentId" type="hidden">
-            <div class="input-group mb-3">
-                <label for="ratingRange" class="form-label">Review</label>
-                <input name="ratingRange"  type="range" class="form-range" min="0" max="5" step="0.5" id="ratingRange">
-              </div>
-              <div class="d-flex mb-3">
-                  <label for="reviewComment" class="form-label">Comments (Optional)</label>
-                  <textarea name="reviewComment"  class="form-control" aria-label="Comments (Optional)" id="reviewComment"></textarea>
-                </div>
-              <button class="btn btn-primary" data-bs-target="#ModalGameDetails" data-bs-toggle="modal" type="submit">Submit</button>
-          </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!--ModalReview end-->

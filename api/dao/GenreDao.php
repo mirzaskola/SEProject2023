@@ -1,5 +1,4 @@
 <?php
-
 namespace Dao;
 
 use PDO;
@@ -26,7 +25,7 @@ class GenreDao implements GenreDaoInterface
     
     public function getAllGenre()
     {
-        $query = "SELECT id, name FROM " . self::TABLE_NAME;
+        $query = "SELECT id, title, description, release_date, duration, genre, cover_image, content_type_id FROM " . self::TABLE_NAME;
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -34,28 +33,24 @@ class GenreDao implements GenreDaoInterface
 
     public function getGenreById($id)
     {
-        $query = "SELECT id, name FROM " . self::TABLE_NAME . " WHERE id=:id";
+        $query = "SELECT id, title, description, release_date, duration, genre, cover_image, content_type_id FROM " . self::TABLE_NAME . " WHERE id=:content_id";
         $stmt = $this->conn->prepare($query);
-        $stmt->execute(['id' => $id]);
+        $stmt->execute(['content_id' => $id]);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return reset($result);
     }
+    
+    public function getGenreByContentId($id)
+    {
+        
+    }
     public function insertGenre(Genre $genre)
     {
-        $name = $genre->getName();
         
-        $query = "INSERT INTO " . self::TABLE_NAME . " (name) VALUES ('$name')";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
     }
     public function updateGenre(Genre $genre)
     {
-        $id = $genre->getId();
-        $name = $genre->getName();
         
-        $query = "UPDATE " . self::TABLE_NAME . " SET name='$name' WHERE id=$id";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
     }
     public function deleteGenre(Genre $genre)
     {

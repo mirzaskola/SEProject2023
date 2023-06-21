@@ -3,7 +3,6 @@
 namespace Interfaces;
 
 use Models\Content;
-use Models\SearchRequest;
 
 interface ContentDaoInterface
 {
@@ -14,5 +13,4 @@ interface ContentDaoInterface
     public function insertContent(Content $content);
     public function updateContent(Content $content);
     public function deleteContent(Content $content);
-    public function getContentBySearch(SearchRequest $request);
 }

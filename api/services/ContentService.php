@@ -3,52 +3,34 @@
 namespace Services;
 
 use Dao\ContentDao;
-use Dao\GenreDao;
 use Models\Content;
-use Models\SearchRequest;
 
 class ContentService{ 
-    public $contentDao;
-    public $genreDao;
+    public $content_dao;
 
     public function __construct(){
-        $this->contentDao = new ContentDao();
-        $this->genreDao = new GenreDao();
+        $this->content_dao = new ContentDao();
     }
     public function getAllContent(){
-        return $this->contentDao->getAllContent();
+        return $this->content_dao->getAllContent();
     }
     public function getContentById($id){
-        $content = $this->contentDao->getContentById(intval($id));
-        $brackets = array('[', ']', ',');
-        $genreIds = str_replace($brackets, "", $content['genres']);
-        $genreStringIds = explode(" ", $genreIds);
-        $genreNames = array();
-        foreach($genreStringIds as $id){
-            $fetchedGenre = $this->genreDao->getGenreById(intval($id));
-            array_push($genreNames, $fetchedGenre['name']);
-        }
-        $content['genres'] = $genreNames;
-        return $content;
+        return $this->content_dao->getContentById($id);
     }
     public function getContentByType($content_type){
-        return $this->contentDao->getContentByType($content_type);
+        return $this->content_dao->getContentByType($content_type);
     }
     public function insertContent(Content $content)
     {
-        return $this->contentDao->insertContent($content);
+        return $this->content_dao->insertContent($content);
     }
     public function updateContent(Content $content)
     {
-        return $this->contentDao->updateContent($content);
+        return $this->content_dao->updateContent($content);
     }
     public function deleteContent(Content $content)
     {
-        return $this->contentDao->deleteContent($content);
-    }
-    public function getContentBySearch(SearchRequest $request)
-    {
-        return $this->contentDao->getContentBySearch($request);
+        return $this->content_dao->deleteContent($content);
     }
 }
 ?>

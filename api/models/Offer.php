@@ -14,10 +14,7 @@ class Offer
     {
         return $this->id;
     }
-    public function setId($id): void
-    {
-        $this->id = $id;
-    }
+
     public function getPartnerName(): string
     {
         return $this->partnerName;

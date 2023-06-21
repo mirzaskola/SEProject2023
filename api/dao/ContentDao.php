@@ -1,7 +1,6 @@
 <?php
 namespace Dao;
 
-use Models\SearchRequest;
 use PDO;
 use Configuration\Configuration;
 use Interfaces\ContentDaoInterface;
@@ -81,17 +80,17 @@ class ContentDao implements ContentDaoInterface
         $stmt = $this->conn->prepare($query);
         $stmt->execute(['id' => $id]);
     }
-    public function getContentBySearch(SearchRequest $request)
-    {
-        $searchInput = $request->getSearchInput();
-        $contentType = $request->getContentType();
-        
-        $query = "SELECT id, title, description, release_date, duration, genres, cover_image, content_type_id
-                  FROM content
-                  WHERE content_type_id=:content_type AND lower(title) LIKE '%".strtolower($searchInput)."%';";
+  /*
 
+      public function get_by_search_input($content_type, $search_input){
+        $query = "SELECT c.id, c.title, c.description, c.release_date, c.duration, c.genre, c.cover_image, c.content_type_id, AVG(r.rating_value) AS average_rating
+                  FROM content c
+                  LEFT JOIN rating r ON c.id = r.content_id
+                  WHERE lower(c.title) LIKE '%".strtolower($search_input)."%' OR lower(c.description) LIKE '%".strtolower($search_input)."%' AND c.content_type_id=:content_type
+                  GROUP BY c.id, c.title, c.description, c.release_date, c.duration, c.genre, c.cover_image, c.content_type_id;
+                ";
         $stmt = $this->conn->prepare($query);
-        $stmt->execute(['content_type' => $contentType]);
+        $stmt->execute(['content_type' => $content_type]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-      }
+      }*/
 }
