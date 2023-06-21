@@ -8,8 +8,7 @@ class User
     private $username;
     private $email;
     private $userRole;
-    private $passwordHash;
-    private $passwordSalt;
+    private $password;
 
     public function getId(): int
     {
@@ -51,23 +50,13 @@ class User
         $this->userRole = $userRole;
     }
 
-    public function getPasswordHash(): string
+    public function getPassword(): string
     {
-        return $this->passwordHash;
+        return $this->password;
     }
 
-    public function setPasswordHash(string $passwordHash): void
+    public function setPassword(string $password): void
     {
-        $this->passwordHash = $passwordHash;
-    }
-
-    public function getPasswordSalt(): string
-    {
-        return $this->passwordSalt;
-    }
-
-    public function setPasswordSalt(string $passwordSalt): void
-    {
-        $this->passwordSalt = $passwordSalt;
+        $this->password = $password;
     }
 }

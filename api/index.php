@@ -13,7 +13,6 @@ foreach(glob(__DIR__."/dao/*.php") as $dao) require_once $dao;
 foreach(glob(__DIR__."/services/*.php") as $service) require_once $service;
 foreach(glob(__DIR__."/routes/*.php") as $route) require_once $route;
 
-
 Flight::start();
 
 ?>

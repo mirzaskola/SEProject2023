@@ -8,7 +8,6 @@ interface GenreDaoInterface
 {
     public function getAllGenre();
     public function getGenreById($id);
-    public function getGenreByContentId($id);
     public function insertGenre(Genre $genre);
     public function updateGenre(Genre $genre);
     public function deleteGenre(Genre $genre);

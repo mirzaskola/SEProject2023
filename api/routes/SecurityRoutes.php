@@ -2,37 +2,27 @@
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use Services\UserService;
 
-Flight::route('POST /register', function(){
-  $login = Flight::request()->data->getData();
-  $user = Flight::userDao()->get_user_by_email($login['email']);
-  if (isset($user['id'])){
-    if($user['password'] == $login['password']){
-      unset($user['password']);
-      $jwt = JWT::encode($user, Config::JWT_SECRET(), 'HS256');
-      Flight::json(['token' => $jwt]);
-    }else{
-      Flight::json(["message" => "Wrong password"], 404);
-    }
-  }else{
-    Flight::json(["message" => "User doesn't exist"], 404);
-  }
+Flight::route('POST /signup', function(){
+  $signUpData = Flight::request()->data->getData();
+  // $sign_up_data['password'] = md5($sign_up_data['password']);
+  // $sign_up_data['user_role'] = 0;
+  $userService = new UserService();
+  $response = $userService->signup($signUpData);
+  Flight::json(["message" => $response['message']], $response['code']);
 });
 
 Flight::route('POST /login', function(){
-    $login = Flight::request()->data->getData();
-    $user = Flight::userDao()->get_user_by_email($login['email']);
-    if (isset($user['id'])){
-      if($user['password'] == $login['password']){
-        unset($user['password']);
-        $jwt = JWT::encode($user, Config::JWT_SECRET(), 'HS256');
-        Flight::json(['token' => $jwt]);
-      }else{
-        Flight::json(["message" => "Wrong password"], 404);
-      }
-    }else{
-      Flight::json(["message" => "User doesn't exist"], 404);
-    }
+  $loginData = Flight::request()->data->getData();  
+  $userService = new UserService();
+  $response = $userService->login($loginData);
+  if(isset($response['token'])){
+      Flight::json($response['token'], 200); 
+  }
+  else{
+      Flight::json(["message" => $response['message']], $response['code']);
+  }
 });
 
 ?>
