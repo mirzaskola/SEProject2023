@@ -12,10 +12,15 @@ class Content
     private $genres;
     private $coverImage;
     private $contentTypeId;
+    private $rating;
 
     public function getId(): int
     {
         return $this->id;
+    }
+    public function getRating(): string
+    {
+        return $this->rating;
     }
     public function setId($id): void
     {

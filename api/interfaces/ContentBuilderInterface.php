@@ -6,6 +6,7 @@ use Models\Content;
 
 interface ContentBuilderInterface
 {    
-    public function getContentGenre($id): Content;
-    public function getContentRating($id): Content;
+    public function getContentGenre($content);
+    public function getContentRating($content);
+    public function getContentReviews($content);
 }

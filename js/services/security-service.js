@@ -1,4 +1,5 @@
 const SecurityService = {
+  
     redirectToLogin: function () {
         $("#ModalReview").modal("show");
         let reviewForm = document.getElementById("reviewContentForm");
