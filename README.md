@@ -6,8 +6,7 @@ Spoiler Alert is a movie/series review website aimed at film enthusiasts. It pro
 
 This version of Spoiler Alert includes the following features:
 
-- CRUD operations for the "content" entity
-- Endpoint: `/rest-api/content`
+- CRUD operations for the "content", "user", "rating", "offer", "genre" entities
 
 Feel free to explore the exciting world of movies and series with Spoiler Alert!
 
